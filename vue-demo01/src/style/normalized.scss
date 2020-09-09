@@ -1,0 +1,207 @@
+/*官网：http://necolas.github.io/normalize.css/ (目前v8.0.1) */
+
+/* 译者：无数  欢迎加入全栈技术开发群 300567032 */
+
+/*！normalize.css v8.0.1 | MIT许可证| github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ * 1. 修正所有浏览器中的行高.
+ * 2. 防止在iOS中切换横竖屏时调整字体大小.
+ */
+
+ html {
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+  }
+  
+  /* Sections
+     ========================================================================== */
+  
+  /**
+   * Remove the margin in all browsers.
+   * 删除所有浏览器body的margin值。
+   */
+  
+  body {
+    margin: 0;
+    font-size:14px;
+  }
+  
+  /**
+   * Render the `main` element consistently in IE.
+   * 在IE中保持 `main` 元素的一致性。
+   */
+  main {
+    display: block;
+  }
+  
+  /**
+   * Correct the font size and margin on `h1` elements within `section` and
+   * `article` contexts in Chrome, Firefox, and Safari.
+   * 修正`section`和`article`中`h1`元素的font-size和margin值
+   * (在chrome、Firefox、Safari中)
+   */
+  
+  h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+  }
+  
+  /* Grouping content
+     ========================================================================== */
+  
+  /**
+   * 1. Add the correct box sizing in Firefox.
+   * 1. 修正Firefox的box-sizing
+   * 2. Show the overflow in Edge and IE.
+   * 2. 在Edge和IE中显示溢出
+   */
+  
+  hr {
+    box-sizing: content-box; /* 1 */
+    height: 0; /* 1 */
+    overflow: visible; /* 2 */
+  }
+  
+  /**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 1. 修正所有浏览器中字体大小的继承和缩放。
+   * 2. Correct the odd `em` font sizing in all browsers.
+   * 2. 修正所有浏览器中奇怪的`em`字体大小。
+   */
+  
+  pre {
+    font-family: monospace, monospace; /* 1 */
+    font-size: 1em; /* 2 */
+  }
+  
+  /* Text-level semantics：文本级别的语义
+     ========================================================================== */
+  
+  /**
+   * Remove the gray background on active links in IE 10.
+   * 删除IE 10中活跃链接的灰色背景。
+   */
+  
+  a {
+    background-color: transparent;
+  }
+  
+  /**
+   * 1. Remove the bottom border in Chrome 57-
+   * 1. 移除Chrome 57- 的border-bottom
+   * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+   * 2. 在Chrome、Edge、IE、Opera和Safari中添加正确的text-decoration。
+   */
+  
+  abbr[title] {
+    border-bottom: none; /* 1 */
+    text-decoration: underline; /* 2 */
+    text-decoration: underline dotted; /* 2 */
+  }
+  
+  /**
+   * Add the correct font weight in Chrome, Edge, and Safari.
+   * 在Chrome、Edge和Safari中添加正确的font-weight
+   */
+  
+  b,
+  strong {
+    font-weight: bolder;
+  }
+  
+  /**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 1. 修正所有浏览器中字体大小的继承和缩放。
+   * 2. Correct the odd `em` font sizing in all browsers.
+   * 2. 修正所有浏览器中奇怪的`em`字体大小。
+   */
+  
+  code,
+  kbd,
+  samp {
+    font-family: monospace, monospace; /* 1 */
+    font-size: 1em; /* 2 */
+  }
+  
+  /**
+   * Add the correct font size in all browsers.
+   * 在所有浏览器中添加正确的字体大小
+   */
+  
+  small {
+    font-size: 80%;
+  }
+  
+  /**
+   * Prevent `sub` and `sup` elements from affecting the line height in
+   * all browsers.
+   * 防止`sub`和`sup`元素影响所有浏览器的行高。
+   */
+  
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  
+  sub {
+    bottom: -0.25em;
+  }
+  
+  sup {
+    top: -0.5em;
+  }
+  
+  /* Embedded content：嵌入的内容
+     ========================================================================== */
+  
+  /**
+   * Remove the border on images inside links in IE 10.
+   * 删除IE 10中链接(`a`)内`img`的边框。
+   */
+  
+  img {
+    border-style: none;
+  }
+  
+  /* Forms 表单
+     ========================================================================== */
+  
+  /**
+   * 1. Change the font styles in all browsers.
+   * 1. 更改所有浏览器的字体样式
+   * 2. Remove the margin in Firefox and Safari.
+   * 2. 删除Firefox和Safari的margin
+   */
+  
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    line-height: 1.15; /* 1 */
+    margin: 0; /* 2 */
+  }
+  
+  /**
+   * Show the overflow in IE.
+   * 在IE中显示溢出
+   * 1. Show the overflow in Edge.
+   * 1. 在Edge中显示溢出
+   */
+  
+  button,
+  input { /* 1 */
+    overflow: visible;
+  }
+  
