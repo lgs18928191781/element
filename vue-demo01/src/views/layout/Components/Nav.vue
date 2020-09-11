@@ -61,7 +61,7 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-@import "../../../style/config.scss";
+@import "@/style/config.scss";
 .logo{
   text-align: center;
   img{
