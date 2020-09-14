@@ -1,4 +1,5 @@
 import {MessageBox} from "element-ui"
+import {getInfoCategory,category} from '@/api/common.js'
 export default{
     install(Vue,options){
         Vue.prototype.confirm =(params)=>{
@@ -22,5 +23,10 @@ export default{
                 });
 
         }
+        // Vue.prototype.common=()=>{
+        //     category
+        //     getInfoCategory()
+        // }
+
     }
 }

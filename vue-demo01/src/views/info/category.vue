@@ -13,7 +13,7 @@
                         {{firstItem.category_name}}
                         <div class='button-group'>
                             <el-button size="mini" type="danger" round @click="editCategory({data:firstItem,type:'category_first_edit'})">编辑</el-button>
-                            <el-button size="mini" type="success" round>添加子级</el-button>
+                            <el-button size="mini" type="success" round @click="handlerAddChildren({data:firstItem,type:'category_children_add'})">添加子级</el-button>
                             <el-button size="mini" round @click="deleteCategoryConfirm(firstItem.id)">删除</el-button>
                         </div>
                         </h4>
@@ -58,7 +58,7 @@
     
 </template>
 <script>
-import {AddFirstCategory,GetCategory,DeleteCategory,EditCategory} from "@/api/news.js"
+import {AddFirstCategory,DeleteCategory,EditCategory,AddChildrentCategory,GetCategoryAll} from "@/api/news.js"
 export default {
     name:'category',
     data(){
@@ -99,6 +99,9 @@ export default {
             if(this.submit_button_type=='category_first_edit'){
                 this.editFirstCategory()
             }
+             if(this.submit_button_type=='category_children_add'){
+                this.addChildrenCategory()
+            }
             
         },
         //添加一级分类
@@ -109,10 +112,60 @@ export default {
             this.category_first_disabled=false
             this.submit_button_disabled=false
         },
+        //添加子级
+        handlerAddChildren(params){
+            //存储数据
+            this.category.current=params.data
+            //更新确定按钮类型
+            this.submit_button_type=params.type
+            this.category_second_disabled=false
+            this.submit_button_disabled=false
+            this.category_second=true
+            this.category_first_disabled=true
+            //更新显示一级分类文本
+            this.form.categoryName=params.data.category_name
+            },
+        addChildrenCategory(){
+            if(!this.form.secCategoryName){
+                this.$message({
+                    message:'子级分类名称不能为空！',
+                    type:"error"
+
+                })
+                return false;
+                }
+            let requestData={
+                categoryName:this.form.secCategoryName,
+                parentId:this.category.current.id
+            }
+            AddChildrentCategory(requestData).then(response=>{
+                let responseData=response.data;
+                console.log(responseData)
+                this.$message({
+                    message:responseData.message,
+                    type:'success'
+                })
+                //调用分类列表接口
+                this.getCategoryAll()
+                //清空子级输入框内容
+                this.form.secCategoryName=''
+            })
+
+        },
+
         //调用一级分类的API
-        getCategory(){
-            GetCategory({}).then(response=>{
-                let data=response.data.data.data
+        // getCategory(){
+        //     GetCategory({}).then(response=>{
+        //         let data=response.data.data.data
+        //         this.category.item=data
+        //     }).catch(error=>{
+
+        //     })
+        // },
+        //调用全部分类的API
+        getCategoryAll(){
+            GetCategoryAll({}).then(response=>{
+                let data=response.data.data
                 this.category.item=data
             }).catch(error=>{
 
@@ -150,6 +203,7 @@ export default {
         },
          //编辑按钮
         editCategory(params){
+            //显示一级分类文本
             this.submit_button_type=params.type
             this.category_second=false
             this.category_first_disabled=false
@@ -159,6 +213,7 @@ export default {
             //存储当前数据对象
             this.category.current=params.data
         },
+        
         editFirstCategory(){
             if(this.category.current.length==0){
                         this.$message({
@@ -229,7 +284,8 @@ export default {
     },
     //DOM挂载完执行，页面DOM元素完成渲染
     mounted(){
-        return this.getCategory()
+        // return this.getCategory()
+        return this.getCategoryAll()
     }
     
     

@@ -1,6 +1,6 @@
 <template>
     
-    <el-dialog title="新增" :visible.sync="dialog_info_flag" @close="close" width="580" @opened="openDialog">
+    <el-dialog title="编辑" :visible.sync="dialog_info_flag" @close="close" width="580" @opened="openDialog">
          <el-form :model="form" ref="addInfoForm">
            <el-form-item label="类型" :label-width="formLabelWidth">
             <el-select v-model="form.categoryId" placeholder="请选择活动区域">
@@ -27,9 +27,9 @@
     
 </template>
 <script>
-import {AddInfo} from "@/api/news.js";
+import {AddInfo,GetList,EditInfo} from "@/api/news.js";
 export default {
-    name:'dialogInfo',
+    name:'DialogInfo',
     data(props){
         
         return{
@@ -59,10 +59,33 @@ export default {
         openDialog(){
                 let _this=this;
                 let props={..._this._props};
-              this.categoryOption.item=props.category
+                this.categoryOption.item=props.category
+                 this.getInfo()
+              
+        },
+        getInfo(){
+            let _this=this;
+            let props={..._this._props};
+            let requestData={
+                pageNumber:1,
+                pageSize:1,
+                id:props.id,
+            }
+            GetList(requestData).then(response=>{
+                let requestData=response.data.data.data[0]
+                this.form={
+                    categoryId:requestData.categoryId,
+                    title:requestData.title,
+                    content:requestData.content,
+                }
+                
+                })
         },
         submit(){
-              let requestData={
+                let _this=this;
+                let props={..._this._props};
+                let requestData={
+                id:props.id,
                 categoryId:this.form.categoryId,
                 title:this.form.title,
                 content:this.form.content,
@@ -76,16 +99,20 @@ export default {
                  return false;
                  }
                 this.submitLoading=true
-               AddInfo(requestData).then(response=>{
+               EditInfo(requestData).then(response=>{
                  let data=response.data
                  this.$message({
                       message: data.message,
                       type:'success',
                  })
                  this.submitLoading=false
+                 //刷新数据方式
+                 //1.暴力刷新(调父组件的方法)
+                 this.$emit("getList");
+                 //2.返回列表，手动修改指定数据
                  //重置表单
                 //  this.$refs["addInfoForm"].resetFields();
-                      this.resetForm()
+                      // this.resetForm()
                }).catch(error=>{
                  this.submitLoading=false
                })
@@ -104,6 +131,7 @@ export default {
       return this.resetForm()
       
     },
+    
     //父组件往子组件传值是单向数据流，不能反向修改
     props:{ //props中的数据只读，无法重新赋值，data中数据可读可写
        flag:{
@@ -113,6 +141,10 @@ export default {
        category:{
          type:Array,
          defalut:()=>[]
+       },
+        id:{
+         type:String,
+         defalut:" ",
        }
     },
     watch:{
