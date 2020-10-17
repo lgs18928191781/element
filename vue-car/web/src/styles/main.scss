@@ -1,0 +1,76 @@
+@import "./sassConfig.scss";
+@import "./normalized.scss";
+@import "./ui.scss";
+@import "./icon.scss";
+.color-main{color:$color-main;}
+.text-center{text-align: center;}
+.text-left{text-align: left;}
+.text-right{text-align: right;}
+.pull-right{
+    float: right;
+}
+.pull-left{
+    float: left;
+}
+.fs-24{
+    font-size: 24px;
+}
+.fs-12{font-size: 12px;}
+.fs-16{font-size: 16px;}
+.p-r{position: relative;}
+.p-a{position: absolute;}
+/*clearfix*/
+.clearfix{
+    @extend %clearfix;
+}
+.select-car-btn{
+    margin: 0 17px;
+    display: block;
+    width: 240px;
+    height: 84px;
+    line-height: 84px;
+    text-align: center;
+    border-radius: 100px;
+    color: #fff;
+    font-size: 26px;
+    font-weight: 300;
+    background-color: $color-main;
+}
+.user-container{
+    
+}
+.groud-links{
+    a{
+        position: relative;
+        display: block;
+        margin: 0 -32px;
+        padding: 0 30px;
+        height: 64px;
+        line-height: 64px;
+        text-decoration: none;
+        color: rgba(255,255,255,.4);
+        border-bottom: 1px solid rgba(255,255,255,.03);
+        font-size: 15px;
+    }
+    .icon{
+        width: 30px;
+        height: 30px;
+        margin:0 16px -10px 0;
+        
+    }
+    .arrow:after{
+        content: '';
+        position: absolute;
+        right: 50px;
+        top:50%;
+        margin-top: -5px;
+        width: 10px;
+        height: 10px;
+        border-top: 1px solid #fff;
+        border-right: 1px solid #fff;
+        @include webkit(box-sizing,border-box);
+        @include webkit(transform,rotate(45deg));
+        opacity: .5;
+
+    }
+}
